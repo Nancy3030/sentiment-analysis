@@ -56,7 +56,7 @@ def exclude_onkey(df1, df2):
     df2 = df2.where(col('word').isin(common_keys)==False)
     print 'exclude onkey: '
     df1.show()
-    df2.show()
+    # df2.show()
     return df1, df2
 
 
