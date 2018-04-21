@@ -2,6 +2,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 from pyspark.sql.types import StructType, StructField, StringType
 import timeit
+import re
 
 
 def raw_df():
@@ -18,7 +19,8 @@ def raw_df_sampling():
 
 def word_parser():
     df = raw_df().select(['SentimentText', 'Sentiment'])
-    rdd = df.rdd.flatMap(lambda x: [[ele.lower(), x[1]] for ele in x[0].split()])
+    rdd = df.rdd.flatMap(lambda x: [[ele.lower(), x[1]] for ele in x[0].split()])\
+            .filter(lambda x: len(re.compile("[^a-zA-Z]+").findall(x[0])) == 0)
     # print rdd.take(5)
     df = spark.createDataFrame(rdd, ['word', 'Sentiment'])
     return df
