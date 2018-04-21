@@ -34,7 +34,7 @@ def stop_word():
 def word_count(label):
     df = word_parser()\
         .where(col('Sentiment').isin(label))
-    df = df.where(col('word').isin(stop_word())==False)
+    # df = df.where(col('word').isin(stop_word())==False)
     df = df.select(['word']).groupBy(['word']).count().sort(col("count").desc())
     # df.show()
     return df
