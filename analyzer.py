@@ -5,7 +5,7 @@ import timeit
 
 
 def raw_df():
-    df = spark.read.option('header', 'true').csv('./dataset1.csv')
+    df = spark.read.option('header', 'true').option('encoding', 'utf-8').csv('./dataset1.csv')
     # df = spark.read.option('header', 'true').csv('s3n://cs643project/dataset1.csv')
     return df
 
