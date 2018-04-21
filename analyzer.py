@@ -101,6 +101,8 @@ if __name__ == "__main__":
         .appName("twitter data") \
         .getOrCreate()
 
+    spark.sparkContext.setLogLevel("ERROR")
+
     # raw_df_sampling()
     # raw_df().show()
     master()
