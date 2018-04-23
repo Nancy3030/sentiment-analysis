@@ -5,9 +5,12 @@ import timeit
 import re
 
 
+data_file = ''
+
+
 def raw_df():
-    df = spark.read.option('header', 'true').option('encoding', 'utf-8').csv('./dataset1.csv')
-    # df = spark.read.option('header', 'true').csv('https://s3.us-east-2.amazonaws.com/cs643project/dataset1.csv')
+    df = spark.read.option('header', 'true').option('encoding', 'utf-8').csv(data_file)
+    # df = spark.read.option('header', 'true').option('encoding', 'utf-8').csv('s3n://cs643project/dataset1.csv')
     return df
 
 
@@ -107,4 +110,6 @@ if __name__ == "__main__":
 
     # raw_df_sampling()
     # raw_df().show()
-    master()
+    file_name = "./dataset1.csv"
+    file_name = "s3n://cs643project/dataset1.csv"
+    master(file_name)
