@@ -104,6 +104,7 @@ def master():
         prob_in_tweet('like')
         stop = timeit.default_timer()
         time_cost.append(stop - start)
+        break
 
     print "time cost for all input files : ", time_cost 
 
