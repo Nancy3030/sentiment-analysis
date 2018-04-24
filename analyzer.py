@@ -88,7 +88,9 @@ def prob_in_tweet(w):
 # What are the chances a positive/negative tweet will contain certain words?
 
 
-def master():
+def master(input_file):
+    global data_file
+    data_file = input_file
     start = timeit.default_timer()
     # print stop_word()
     df1 = word_count(['0'])
