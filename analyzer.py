@@ -93,7 +93,7 @@ def master():
     file_name_prefix= "s3n://cs643project/dataset" 
     file_name_postfix = ".csv"
 
-    for i in range(1, 6):
+    for i in range(1, 5):
         global data_file
         data_file = file_name_prefix + str(i) + file_name_postfix
         start = timeit.default_timer()
