@@ -88,7 +88,7 @@ def prob_in_tweet(w):
 # What are the chances a positive/negative tweet will contain certain words?
 
 
-def master(input_file):
+def master():
     time_cost = []
     file_name_prefix= "s3n://cs643project/dataset" 
     file_name_postfix = ".csv"
@@ -118,4 +118,4 @@ if __name__ == "__main__":
     # raw_df_sampling()
     # raw_df().show()
 
-    master(file_name)
+    master()
