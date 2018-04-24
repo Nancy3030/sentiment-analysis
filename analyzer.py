@@ -115,7 +115,4 @@ if __name__ == "__main__":
 
     spark.sparkContext.setLogLevel("ERROR")
 
-    # raw_df_sampling()
-    # raw_df().show()
-
     master()
