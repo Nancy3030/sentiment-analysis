@@ -41,7 +41,7 @@ def word_count(label):
         .where(col('Sentiment').isin(label))
     # df = df.where(col('word').isin(stop_word())==False)
     df = df.select(['word']).groupBy(['word']).count().sort(col("count").desc())
-    # df.show()
+    df.show()
     return df
 
 
@@ -89,18 +89,23 @@ def prob_in_tweet(w):
 
 
 def master(input_file):
-    global data_file
-    data_file = input_file
-    start = timeit.default_timer()
-    # print stop_word()
-    df1 = word_count(['0'])
-    df2 = word_count(['1'])
-    exclude_onkey(df1, df2)
-    tweet_length(['0'])
-    prob_in_tweet('like')
-    stop = timeit.default_timer()
-    print "total time cost: ", stop - start
+    time_cost = []
+    file_name_prefix= "s3n://cs643project/dataset" 
+    file_name_postfix = ".csv"
 
+    for i in range(1, 11):
+        global data_file
+        data_file = file_name_prefix + str(i) + file_name_postfix
+        start = timeit.default_timer()
+        df1 = word_count(['0'])
+        df2 = word_count(['1'])
+        exclude_onkey(df1, df2)
+        tweet_length(['0'])
+        prob_in_tweet('like')
+        stop = timeit.default_timer()
+        time_cost.append(stop - start)
+
+    print "time cost for all input files : ", time_cost 
 
 if __name__ == "__main__":
     spark = SparkSession \
@@ -112,6 +117,5 @@ if __name__ == "__main__":
 
     # raw_df_sampling()
     # raw_df().show()
-    file_name = "./dataset1.csv"
-    file_name = "s3n://cs643project/dataset1.csv"
+
     master(file_name)
