@@ -87,13 +87,13 @@ def prob_in_tweet(w):
 # Which tweets are longer? Positive or Negative?
 # What are the chances a positive/negative tweet will contain certain words?
 
-
 def master():
     time_cost = []
     file_name_prefix= "s3n://cs643project/dataset" 
     file_name_postfix = ".csv"
 
     for i in range(1, 5):
+        i = 4
         global data_file
         data_file = file_name_prefix + str(i) + file_name_postfix
         start = timeit.default_timer()
